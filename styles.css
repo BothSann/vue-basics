@@ -1,119 +1,259 @@
+/* Base Styles */
+:root {
+  --primary-color: #6200ea;
+  --primary-dark: #3700b3;
+  --primary-light: #bb86fc;
+  --accent-color: #03dac6;
+  --danger-color: #cf6679;
+  --success-color: #00c853;
+  --bg-dark: #121212;
+  --bg-card: #1e1e1e;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --border-radius: 16px;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  --monster-color: #f44336;
+  --player-color: #2196f3;
+}
+
 * {
   box-sizing: border-box;
-}
-
-html {
-  font-family: "Jost", sans-serif;
-}
-
-body {
-  margin: 0;
-}
-
-header {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  padding: 0.5rem;
-  background-color: #880017;
-  color: white;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-section {
-  width: 90%;
-  max-width: 40rem;
-  margin: auto;
-}
-
-.healthbar {
-  width: 100%;
-  height: 40px;
-  border: 1px solid #575757;
-  margin: 1rem 0;
-  background: #fde5e5;
-}
-
-.healthbar__value {
-  background-color: #00a876;
-  width: 100%;
-  height: 100%;
-}
-
-.container {
-  text-align: center;
-  padding: 0.5rem;
-  margin: 1rem auto;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  border-radius: 12px;
-}
-
-#monster h2,
-#player h2 {
-  margin: 0.25rem;
-}
-
-#controls {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-}
-
-button {
-  font: inherit;
-  border: 1px solid #88005b;
-  background-color: #88005b;
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  margin: 1rem;
-  width: 12rem;
-  cursor: pointer;
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
-}
-
-button:focus {
-  outline: none;
-}
-
-button:hover,
-button:active {
-  background-color: #af0a78;
-  border-color: #af0a78;
-  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.26);
-}
-
-button:disabled {
-  background-color: #ccc;
-  border-color: #ccc;
-  box-shadow: none;
-  color: #3f3f3f;
-  cursor: not-allowed;
-}
-
-#log ul {
-  list-style: none;
   margin: 0;
   padding: 0;
 }
 
-#log li {
+html {
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--primary-dark)
+  );
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.game-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-top: 0.3rem;
+}
+
+/* Main Game Layout */
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.entity-card {
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Health Bars */
+.healthbar {
+  height: 30px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 1.2rem 0;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.healthbar__value {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+#monster .healthbar__value {
+  background: linear-gradient(90deg, var(--monster-color), #ff7961);
+}
+
+#player .healthbar__value {
+  background: linear-gradient(90deg, var(--player-color), #6ec6ff);
+}
+
+/* Game Over Section */
+.game-over {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--primary-dark)
+  );
+  animation: pulse 1.5s infinite alternate;
+  text-align: center;
+}
+
+@keyframes pulse {
+  from {
+    box-shadow: 0 0 15px var(--primary-light);
+  }
+  to {
+    box-shadow: 0 0 25px var(--primary-light);
+  }
+}
+
+/* Controls Section */
+#controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.action-btn {
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 1rem 0;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.action-btn::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(0);
+  transition: transform 0.3s ease;
+  border-radius: 50%;
+}
+
+.action-btn:hover::after {
+  transform: scale(2);
+}
+
+.action-btn:active {
+  transform: translateY(2px);
+}
+
+.action-btn:disabled {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.action-btn:disabled::after {
+  display: none;
+}
+
+.attack-btn {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.special-btn {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.heal-btn {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.surrender-btn {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: 2px solid var(--text-secondary);
+}
+
+/* Battle Log */
+#log h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.battle-log {
+  list-style: none;
+  max-height: 250px;
+  overflow-y: auto;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.battle-log li {
+  padding: 0.5rem;
   margin: 0.5rem 0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .log--player {
-  color: #7700ff;
+  border-left: 4px solid var(--player-color);
 }
 
 .log--monster {
-  color: #da8d00;
+  border-left: 4px solid var(--monster-color);
 }
 
 .log--damage {
-  color: red;
+  color: var(--danger-color);
+  font-weight: 600;
 }
 
 .log--heal {
-  color: green;
+  color: var(--success-color);
+  font-weight: 600;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  #controls {
+    grid-template-columns: 1fr;
+  }
+
+  .entity-card {
+    padding: 1rem;
+  }
 }
