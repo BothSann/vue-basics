@@ -23,7 +23,7 @@ const app = Vue.createApp({
       return this.currentRound % 3 !== 0;
     },
     mayUseHeal() {
-      return this.currentRound % 2 !== 0;
+      return this.currentRound % 3 !== 0;
     },
     gameOverStyles() {
       if (!this.winner) return {};

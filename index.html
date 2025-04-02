@@ -65,7 +65,7 @@
         <button
           class="action-btn heal-btn"
           @click="healPlayer"
-          :disabled="mayUseHeal"
+          :disabled="mayUseHeal || playerHealth >= 100"
         >
           <span class="btn-text">Heal</span>
         </button>
