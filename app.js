@@ -99,6 +99,14 @@ const app = Vue.createApp({
         actionValue: value,
       });
     },
+    getLogClass(logMessage) {
+      return {
+        "log--player": logMessage.actionBy === "player",
+        "log--monster": logMessage.actionBy === "monster",
+        "log--damage": logMessage.actionType === "damage",
+        "log--heal": logMessage.actionType === "heal",
+      };
+    },
     resetGame() {
       this.playerHealth = 100;
       this.monsterHealth = 100;
