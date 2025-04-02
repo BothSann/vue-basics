@@ -80,10 +80,7 @@
           <li
             v-for="(logMessage, index) in logMessages"
             :key="index"
-            :class="{'log--player': logMessage.actionBy === 'player', 
-            'log--monster': logMessage.actionBy === 'monster',
-            'log--damage': logMessage.actionType === 'damage',
-            'log--heal': logMessage.actionType === 'heal'}"
+            :class="getLogClass(logMessage)"
           >
             <span v-if="logMessage.actionBy === 'player'">You </span>
             <span v-else>Monster </span>
