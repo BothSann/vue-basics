@@ -110,7 +110,11 @@ main {
     var(--primary-dark)
   );
   animation: pulse 1.5s infinite alternate;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 @keyframes pulse {
@@ -200,6 +204,33 @@ main {
   background-color: var(--bg-card);
   color: var(--text-primary);
   border: 2px solid var(--text-secondary);
+}
+
+.reset-btn {
+  background: linear-gradient(135deg, var(--accent-color), #02a89b);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(3, 218, 198, 0.3);
+  color: var(--bg-dark);
+  margin-top: 1.5rem;
+  display: inline-block;
+}
+
+.reset-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(3, 218, 198, 0.5);
+}
+
+.reset-btn:active {
+  transform: scale(0.98);
 }
 
 /* Battle Log */
