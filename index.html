@@ -45,10 +45,13 @@
           <h3 v-if="winner === 'player'">Victory! 🏆</h3>
           <h3 v-else-if="winner === 'monster'">Defeat! 😭</h3>
           <h3 v-else>Stalemate! 🤝</h3>
+          <button class="reset-btn" @click="resetGame">
+            Start New Game 🎮
+          </button>
         </article>
       </section>
 
-      <section id="controls">
+      <section id="controls" v-if="!winner">
         <button class="action-btn attack-btn" @click="attackMonster">
           <span class="btn-text">Attack</span>
         </button>
@@ -73,7 +76,31 @@
 
       <section id="log" class="entity-card">
         <h2>Battle Log</h2>
-        <ul class="battle-log"></ul>
+        <ul class="battle-log">
+          <li
+            v-for="(logMessage, index) in logMessages"
+            :key="index"
+            :class="{'log--player': logMessage.actionBy === 'player', 
+            'log--monster': logMessage.actionBy === 'monster',
+            'log--damage': logMessage.actionType === 'damage',
+            'log--heal': logMessage.actionType === 'heal'}"
+          >
+            <span v-if="logMessage.actionBy === 'player'">You </span>
+            <span v-else>Monster </span>
+            <span v-if="logMessage.actionType === 'damage'">
+              attack and deal
+              <strong>{{ logMessage.actionValue }}</strong> damage</span
+            >
+            <span v-else-if="logMessage.actionType === 'heal'">
+              heal for
+              <strong>{{ logMessage.actionValue }}</strong> health</span
+            >
+            <span v-else>
+              {{ logMessage.actionType }} for
+              <strong>{{ logMessage.actionValue }}</strong></span
+            >
+          </li>
+        </ul>
       </section>
     </main>
   </body>
