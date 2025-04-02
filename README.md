@@ -1,3 +1,3 @@
 ## Screenshots 🖼️
 
-![Overview](public/screenshots/monster-slayer-screenshot.PNG)
+![Overview](./public/screenshot/monster-slayer-screenshot.png)
