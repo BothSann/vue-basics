@@ -67,7 +67,7 @@ const app = Vue.createApp({
       this.attackPlayer();
     },
     attackPlayer() {
-      const damage = getRandomValue(5, 10);
+      const damage = getRandomValue(8, 10);
       this.playerHealth -= damage;
       this.addLogMessage("monster", "attack", damage);
       this.playerHealth = Math.max(0, this.playerHealth);
